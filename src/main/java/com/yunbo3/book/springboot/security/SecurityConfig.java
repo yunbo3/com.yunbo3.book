@@ -26,11 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/api/v1/posts","/api/v1/posts/{id}").permitAll()
+                .antMatchers("/h2-console/**").permitAll() // Allow access to H2 Console
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
-                .csrf().disable(); // Disable CSRF for simplicity in the test
+                .csrf().disable() // Disable CSRF for simplicity in the test
+                .headers().frameOptions().disable(); // Disable X-Frame-Options for H2 Console
 
         // Add debug logs
         http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
@@ -38,5 +40,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed");
         });
     }
-
 }
