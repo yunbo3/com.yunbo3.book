@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/v1/posts","/api/v1/posts/{id}").permitAll()
+                .antMatchers("/","/api/v1/posts","/api/v1/posts/{id}","/posts/save").permitAll()
                 .antMatchers("/h2-console/**").permitAll() // Allow access to H2 Console
                 .anyRequest().authenticated()
                 .and()
