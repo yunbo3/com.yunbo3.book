@@ -24,8 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/favicon.ico","http://localhost:8080/*","/api/v1/posts","/api/v1/posts/{id}","/posts/save","/h2-console/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
