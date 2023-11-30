@@ -42,6 +42,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.20.2' // 버전은 현재 시점의 최신 버전으로 변경 가능
     compile('org.springframework.boot:spring-boot-starter-mustache')
 }
+
 test {
     // 로그 출력을 위해 테스트 실행 시 콘솔 모드 설정
     testLogging {
